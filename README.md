@@ -49,7 +49,7 @@ The MCP server reads data from Civilization VI's log files. You need to enable l
 
 1. Find your `UserOptions.txt` file:
    - **macOS**: `~/Library/Application Support/Sid Meier's Civilization VI/UserOptions.txt`
-   - **Windows**: `~/Documents/My Games/Sid Meier's Civilization VI/UserOptions.txt`
+   - **Windows**: `%LOCALAPPDATA%\Firaxis Games\Sid Meier's Civilization VI\UserOptions.txt`
 
 2. Add or modify this line:
    ```
