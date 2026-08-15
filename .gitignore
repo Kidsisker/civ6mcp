@@ -4,8 +4,9 @@ node_modules/
 # Build output
 dist/
 
-# Claude Code
-.claude/
+# Claude Code (local state only — skills are tracked)
+.claude/*
+!.claude/skills/
 
 # Logs
 *.log

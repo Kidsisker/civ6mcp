@@ -488,7 +488,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
 To enable logging:
 1. The setting GameHistoryLogLevel has been set to 1 in UserOptions.txt
 2. Load your game in Civ6 and play at least one turn
-3. The game will create a log file at: ${getLogsDirectory()}/GameCoreHistory1.xml
+3. The game will create a log file at: ${getLogsDirectory()}/Player_Stats.csv
 
 Once you've played a turn, try this command again.`,
               },
