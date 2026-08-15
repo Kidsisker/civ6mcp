@@ -67,7 +67,8 @@ No test suite exists (`package.json` has no test script). `driver.mjs smoke` is 
 
 ## Gotchas
 
-- **OneDrive Documents redirection breaks the save-based tools on this machine.** `getSavesDirectory()` in `src/paths.ts` builds `homedir()\Documents\My Games\...`, but with OneDrive folder redirection the real saves are in `%USERPROFILE%\OneDrive\Documents\My Games\Sid Meier's Civilization VI\Saves`. So `list_saves`, `read_game_state`, and `get_strategy_brief` report "No save files found" while the ~18 log-based tools work fine. Log paths use `%LOCALAPPDATA%` and are unaffected.
+- **Documents folder redirection (OneDrive).** `getSavesDirectory()` in `src/paths.ts` resolves the real Documents folder from the registry (`HKCU\...\User Shell Folders\Personal`) because OneDrive can redirect it away from `homedir()\Documents`. If `list_saves` reports "No save files found" but saves exist, check that resolution first. Log paths use `%LOCALAPPDATA%` and are unaffected.
+- **`read_game_state` and `get_strategy_brief` require a `save_path` argument** (get one from `list_saves`); calling them without it returns a zod `invalid_type` error.
 - **stdout is protocol-only.** The server writes `Civ6 MCP Server running on stdio` to **stderr**; the driver prefixes it `[server]`. Never print to the server's stdout when editing `src/index.ts` — it corrupts the JSON-RPC stream.
 - **`tsx -e` compiles to CJS** — top-level `await` fails with `Top-level await is currently not supported with the "cjs" output format`. The parsers are synchronous anyway; just call them directly.
 - **Log data is per-game and per-turn.** The Logs CSVs are overwritten when a new game starts and appended each completed turn; mid-turn only the human player's row is fresh. Early-game (turn < ~5) many tools return sparse or "no data" results — that's the data, not a bug.
