@@ -57,7 +57,7 @@ export interface ParsedHeader {
   mods: ModInfo[];
 }
 
-// Statistics from XML game history logging
+// Statistics from Player_Stats.csv game history logging
 export interface CivStatistics {
   civilization: string;
   leader: string;
